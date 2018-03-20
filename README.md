@@ -14,3 +14,7 @@ Redux is the data contained inside this application box whereas React is really 
 # Reducers
 
 A reducer is a function that returns a piece of the application state. Because our application can have many pieces of state, we can have many different reducers. Lets go back to our book app diagram. Our application state has two pieces: the list of books, and the currently selected book. So we can have two different reducers for this: one would be responsible for producing the list of books and the other would be responsible for producing the currently selected book.
+
+# Container: Connecting React to Redux
+
+Connecting these two separate libraries Redux and React is done with a separate library called "React Redux". What we do is we define one of our components as a container. A container is a react component that has a direct connection to the state managed by redux. The "react-redux" library is what forms the bridge between those two separate libraries. The only time where we ever get this bridge available where we can take a react component and inject state into it and data into it is a component called a container. In the documentation, containers are sometimes called "smart components", so right now what we have is a "dumb component" because it doesn't have any direct connection to redux. We usually separate containers and components in different folders.
