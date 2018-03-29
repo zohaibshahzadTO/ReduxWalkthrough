@@ -35,4 +35,12 @@ First, remember that Redux serves to construct the application state and react p
 
 Next we created a component called BookList. It started off as a component but then we decided that it needed to be aware of our state within our redux side of the application. Because BookList had to be aware of that state, we decided to promote it to a container, and we did that by importing the connect function from react-redux and then we defined mapStateToProps and we hooked our component together with mapStateToProps with our connect function. We chose the BookList component to connect to the redux store specifically because only BookList in our application only cares about the books. App.js doesn't really care and it doesn't need to know about the list of books at all. In the end, we made sure that app.js rendered our BookList.
 
-Redux generated a state object that contained our books and then mapped that state as props to our component. Because the state was updated via our reducer, our component re-rendered with that list of books. 
+Redux generated a state object that contained our books and then mapped that state as props to our component. Because the state was updated via our reducer, our component re-rendered with that list of books.
+
+# Actions and Action Creators
+
+One problem is that our BooksReducer lists the same books. So in other words, our application state is always the same. Its 100% static. We don't have the ability to change that state over time. In a little bit, we're going to want to be able to introduce the concept of an active book. Of course, the active book needs to be able to change upon the user clicking buttons. Changing state is what action and action creators are for.
+
+# Lifecycle of Actions in Redux Application
+
+Everything in a redux app starts off with an event triggered by a user either directly or indirectly. This event could be them clicking on a button, or selecting an item from a dropdown or it can be indirect things like an AJAX request finishing loading up or a page initially loading up on the actual web page. All of these events can optionally call an action creator. An action creator is a function that returns an action. So the action creator returns an object when a button is clicked and that object is then automatically sent to all the different reducers inside of the application. We might have 20 different reducers, all of these actions are going to flow via all of those reducers. Reducers can choose depending on the action to return a different piece of state depending on what the action is. That newly returned piece of state then gets piped into the application state and that application state then gets pumped back into our react application which causes all of our components to re-render.
