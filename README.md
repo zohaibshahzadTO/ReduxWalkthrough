@@ -67,3 +67,11 @@ One thing we need to be aware of is that we need to handle the case in which the
 So now we've imported *ActiveBook* reducer and then we added it our *combinedReducers* as another piece of state. Any key to the object that we provide to *combinedReducers* ends up as a key on our global state.
 
 To conclude, we've created a reducer that called the 'BOOK_SELECTED' action and returns the payload. The selected book will now end up as the value for ActiveBook on our state.
+
+# ... Con't
+
+Now that we've added the *reducer_active_book.js* which produces a new piece of applicaton state whenever the 'BOOK_SELECTED' action is triggered, we are now going to start fleshing out the *Book Detail View* whenever there is a selected book.
+
+We need to figure out whether that's going to be a component or container. Note that we make containers when we want to have a component that can touch the redux state directly. We know what our book is and we know when it changes. It makes sense to make the book detail a container. Only the book detail cares about the active book. So we'll make the activebook a container too.
+
+So we've created and started working on the *book-detail.js* container and wired it up to our *app.js*. We need to also hook up the *book-detail.js* to the redux store so it gets told about changes to the active piece of state. It'll be the same with *BookList*. We'll import the *connect* helper and connect our application state to the props of this container. We do that by defining a function called *mapStateToProps* and then we connect *mapStateToProps* to *BookDetail*.
